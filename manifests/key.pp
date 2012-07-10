@@ -23,7 +23,7 @@ define apt::key (
 
       exec { "import gpg key ${name}":
         command => "${thekey} | apt-key add -",
-        unless  => "apt-key list | grep -Fqe '${name}'",
+        unless  => "apt-key list | grep -Fe '${name}' | grep -Fvqe 'expired:'",
         before  => Exec['apt-get_update'],
         notify  => Exec['apt-get_update'],
       }
