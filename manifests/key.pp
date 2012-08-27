@@ -1,4 +1,5 @@
 define apt::key (
+  $keyserver = 'pgp.mit.edu',
   $ensure  = present,
   $source  = '',
   $content = ''
@@ -9,7 +10,7 @@ define apt::key (
     present: {
       if $content == '' {
         if $source == '' {
-          $thekey = "gpg --keyserver pgp.mit.edu --recv-key '${name}' && gpg --export --armor '${name}'"
+          $thekey = "gpg --keyserver ${keyserver} --recv-key '${name}' && gpg --export --armor '${name}'"
         }
         else {
           $thekey = "wget -O - '${source}'"
