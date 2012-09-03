@@ -42,6 +42,10 @@ Variables
       source  => "http://dev.camptocamp.com/packages/debian/pub.key",
     }
 
+    apt::key {"997D3880":
+      keyserver => "keyserver.ubuntu.com",
+    }
+
 ### apt::ppa
 
     apt::ppa {'chris-lea':
