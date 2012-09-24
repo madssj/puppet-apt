@@ -5,7 +5,7 @@ define apt::preferences($ensure="present", $package="", $pin, $priority) {
     default => $package,
   }
 
-  $fname = regsubst($name, '\.', '-', 'G')
+  $fname = regsubst($name, '\.| ', '-', 'G')
 
   # apt support preferences.d since version >= 0.7.22
   if versioncmp($::apt_version, '0.7.22') >= 0 {
