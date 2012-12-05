@@ -22,18 +22,18 @@ class apt::params {
 
   $clean_minutes  = $apt_clean_minutes ? {
     ''      => fqdn_rand(60),
-    default => $apt_clean_minutes
+    default => $apt_clean_minutes,
   }
-  
+
   $clean_hours    = $apt_clean_hours ? {
-    ''      => '0'          ,
-    default => $apt_clean_hours
+    ''      => '0',
+    default => $apt_clean_hours,
   }
 
   $clean_monthday_rand = fqdn_rand(28) + 1
 
   $clean_monthday = $apt_clean_mday ? {
     ''      => $clean_monthday_rand,
-    default => $apt_clean_mday
+    default => $apt_clean_mday,
   }
 }
