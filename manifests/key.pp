@@ -23,9 +23,9 @@ define apt::key (
 
       exec { "import gpg key ${name}":
         command => "${thekey} | apt-key add -",
-        unless => "apt-key list | grep -Fqe '${name}'",
-        before => Exec['apt-get_update'],
-        notify => Exec['apt-get_update'],
+        unless  => "apt-key list | grep -Fqe '${name}'",
+        before  => Exec['apt-get_update'],
+        notify  => Exec['apt-get_update'],
       }
     }
 
