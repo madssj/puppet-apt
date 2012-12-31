@@ -47,4 +47,15 @@ class apt {
     refreshonly => true,
   }
 
+  # apt support preferences.d since version >= 0.7.22
+  if versioncmp($::apt_version, '0.7.22') < 0 {
+    concat {'/etc/apt/preferences':
+      owner   => root,
+      group   => root,
+      mode    => '0644',
+      force   => true,
+      before  => Exec['apt-get_update'],
+      notify  => Exec['apt-get_update'],
+    }
+  }
 }

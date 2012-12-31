@@ -18,6 +18,12 @@ define apt::preferences(
       before  => Exec['apt-get_update'],
       notify  => Exec['apt-get_update'],
     }
+  } else {
+    concat::fragment {$fname:
+      ensure  => $ensure,
+      target  => '/etc/apt/preferences',
+      content => template('apt/preferences.erb'),
+    }
   }
 
 }
