@@ -1,7 +1,8 @@
 // file managed by puppet
 Unattended-Upgrade::Allowed-Origins {
-	"${distro_id} ${distro_codename}";
-	"${distro_id} ${distro_codename}-security";
+<%- @origins.each do |origin| -%>
+    "<%= origin %>";
+<% end -%>
 };
 
 Dpkg::Options { "--force-confold"; }
